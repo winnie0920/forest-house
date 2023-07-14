@@ -1,0 +1,52 @@
+@import "../../../node_modules/bootstrap/scss/functions";
+
+//font
+$font-family-sans-serif: inherit;
+
+//theme
+$theme-white-color: #ffffff;
+$theme-text: #111111;
+
+$theme-lighter-blue: #f0f3fb;
+$theme-light-blue: #3885c6;
+$theme-blue: #1869b7;
+$theme-dark-blue: #145aac;
+
+$theme-light-gray: #f1f3f5;
+$theme-gray: #afb5b6;
+$theme-dark-gray: #999999;
+$theme-darker-gray: #313131;
+
+$background-green: #f1f2ed;
+$background-green-dark: #e7ecd1;
+
+//bootstrap colors
+$blue: #1869b7;
+$blue-100: tint-color($blue, 80%);
+$blue-200: tint-color($blue, 60%);
+$blue-300: tint-color($blue, 40%);
+$blue-400: tint-color($blue, 20%);
+
+$primary: $blue;
+$secondary: tint-color($theme-gray, 60%);
+
+$bp-largest: 75em; //1200px
+$bp-large: 68.75em; //1100px
+$bp-medium: 56.25em; //900px
+$bp-small: 37.5em; //600px
+$bp-smallest: 31.25em; //500px
+
+$margin-web: 15rem;
+$title-padding: 10rem;
+
+$font-h3: 3rem;
+$font-p: 1.2rem;
+$font-p-small: 0.8rem;
+$font-span: 2.5rem;
+$font-icon: 4rem;
+
+$line-normal: 1.5;
+$line-high: 1.75;
+
+$font-weight-rough: 700;
+$font-weight-normal: 600;
