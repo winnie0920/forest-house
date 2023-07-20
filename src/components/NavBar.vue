@@ -1,5 +1,6 @@
 <script setup>
 const navbarColor = ref(false);
+const checkNavBox = ref(false);
 const SlideScroll = () => {
   navbarColor.value = window.scrollY !== 0;
 };
@@ -24,7 +25,16 @@ const scrollToSection = (scroll, path) => {
       element.scrollIntoView({ behavior: "smooth" });
     }
   }
+  checkNavBox.value = false;
 };
+
+watch(checkNavBox, (n) => {
+  if (n) {
+    checkNavBox.value = true;
+  } else {
+    checkNavBox.value = false;
+  }
+});
 
 onMounted(() => {
   window.addEventListener("scroll", SlideScroll);
@@ -37,26 +47,45 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="navbar_header">
-    <div class="navbar_inner" :class="{ scrolling: navbarColor }">
+    <div
+      class="navbar_inner"
+      :class="{ scrolling: navbarColor, checkNav: checkNavBox }"
+    >
       <div class="navbar_container">
         <div class="navbar-logo">
           <p class="navbar-logo_ch">森林小屋</p>
           <p class="navbar-logo_en">Forest cabin</p>
         </div>
+        <input
+          v-model="checkNavBox"
+          type="checkbox"
+          class="navbar-checkbox"
+          id="nav-toggle"
+        />
+        <label for="nav-toggle" class="navbar-open"
+          ><span class="icon-open">&nbsp;</span></label
+        >
+        <div class="navbar-background">
+          <label for="nav-toggle" class="navbar-close">
+            <span class="icon-close">&nbsp;</span>
+          </label>
+        </div>
 
-        <ul class="navbar-list">
-          <li
-            class="navbar-list_title"
-            v-for="l in navbarList.list"
-            :key="l.id"
-          >
-            <div>
-              <span @click="scrollToSection(l.id, l.path)">
-                {{ l.name }}
-              </span>
-            </div>
-          </li>
-        </ul>
+        <nav class="navbar-nav">
+          <ul class="navbar-list">
+            <li
+              class="navbar-list_title"
+              v-for="l in navbarList.list"
+              :key="l.id"
+            >
+              <div>
+                <span @click="scrollToSection(l.id, l.path)">
+                  {{ l.name }}
+                </span>
+              </div>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
   </div>
@@ -71,13 +100,19 @@ onBeforeUnmount(() => {
     top: 0;
     left: 0;
     z-index: 10;
-    font-size: 1.2rem;
+    font-size: $font-p;
     color: $theme-white-color;
+    @media only screen and (max-width: $bp-medium) {
+      font-size: $font-p-small;
+    }
   }
   &_inner {
     position: relative;
     transition: all 0.5s;
     padding: 0.6rem 1.2rem;
+    @media only screen and (max-width: $bp-large) {
+      padding: 0;
+    }
     &:before {
       position: absolute;
       content: "";
@@ -89,21 +124,10 @@ onBeforeUnmount(() => {
       transform: translateY(-100%);
       transition: all 0.5s;
     }
-    &.scrolling {
-      color: $theme-darker-gray;
-      &:before {
-        backdrop-filter: blur(10px);
-        background-color: rgb(255, 255, 255, 50%);
-        transform: translateY(0%);
-      }
-      .navbar-list_title a {
-        color: $theme-darker-gray;
-      }
-    }
   }
   &_container {
     display: flex;
-    align-items: center;
+    align-items: end;
     list-style: none;
     position: relative;
     z-index: 20;
@@ -113,26 +137,210 @@ onBeforeUnmount(() => {
     display: flex;
     flex-direction: column;
     align-items: center;
+    @media only screen and (max-width: $bp-large) {
+      padding: 0.6rem 1.2rem;
+    }
+
     &_ch {
       font-size: 1.7rem;
       font-weight: $font-weight-normal;
+      @media only screen and (max-width: $bp-medium) {
+        font-size: 1.5rem;
+      }
     }
     &_en {
       font-weight: $font-weight-normal;
       font-size: $font-p-small;
       text-transform: uppercase;
+      @media only screen and (max-width: $bp-medium) {
+        font-size: 0.6rem;
+      }
     }
+  }
+  &-nav {
+    @media only screen and (max-width: $bp-large) {
+      position: fixed;
+      opacity: 1;
+      width: 100%;
+      top: 50%;
+      right: 0;
+      z-index: 150;
+    }
+  }
+  &-checkbox {
+    display: none;
   }
   &-list {
     display: flex;
     align-items: center;
     list-style: none;
-    margin: 0;
+    @media only screen and (max-width: $bp-large) {
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      flex-direction: column;
+      transform: translate(50%, -50%);
+      transition: all 0.8s ease-in-out;
+    }
     &_title {
       cursor: pointer;
       &:not(:last-child) {
         margin-right: 2rem;
       }
+      @media only screen and (max-width: $bp-large) {
+        position: relative;
+        font-size: 2rem;
+        font-weight: 500;
+        margin: 1rem;
+        color: $theme-darker-gray;
+        &::after {
+          content: "";
+          position: absolute;
+          right: 50%;
+          left: 50%;
+          bottom: -5px;
+          border-bottom: 0.1rem solid $theme-darker-gray;
+          transition: 0.3s;
+        }
+        &:hover::after {
+          right: 0%;
+          left: 0%;
+        }
+        &:not(:last-child) {
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+  &-background {
+    display: none;
+    @media only screen and (max-width: $bp-large) {
+      display: block;
+      height: 100vh;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      transform: translateX(100%);
+      background-color: $theme-white-color;
+      z-index: 100;
+      transition: all 0.8s ease-in-out;
+    }
+  }
+  &-open {
+    display: none;
+    @media only screen and (max-width: $bp-large) {
+      cursor: pointer;
+      display: block;
+      height: 4.5rem;
+      width: 6.5rem;
+      position: fixed;
+      top: 0;
+      right: 0.5rem;
+      z-index: 100;
+      background-color: transparent;
+      text-align: center;
+    }
+  }
+  &-close {
+    @media only screen and (max-width: $bp-large) {
+      cursor: pointer;
+      height: 4.5rem;
+      width: 6.5rem;
+      position: fixed;
+      top: 0;
+      right: 0.5rem;
+      z-index: 200;
+      background-color: transparent;
+      text-align: center;
+    }
+  }
+}
+.icon-open {
+  display: none;
+  @media only screen and (max-width: $bp-large) {
+    position: relative;
+    margin-top: 2.5rem;
+    &,
+    &::after,
+    &::before {
+      width: 3rem;
+      height: 2px;
+      background-color: $theme-white-color;
+      display: inline-block;
+    }
+    &::after,
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+    }
+    &::after {
+      top: 1rem;
+    }
+    &::before {
+      top: -1rem;
+    }
+  }
+}
+.icon-close {
+  position: relative;
+  margin-top: 2.5rem;
+  top: 50%;
+  right: 0%;
+  &::after,
+  &::before {
+    content: "";
+    width: 3rem;
+    height: 2px;
+    background-color: $theme-darker-gray;
+    display: inline-block;
+    position: absolute;
+    transition: 0.8s cubic-bezier(0.25, 0.6, 0.36, 1);
+  }
+  &::after {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  &::before {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+  &:hover {
+    &::after {
+      transform: translate(-50%, -50%) rotate(225deg);
+    }
+    &::before {
+      transform: translate(-50%, -50%) rotate(-225deg);
+    }
+  }
+}
+.checkNav {
+  .navbar-background {
+    @media only screen and (max-width: $bp-large) {
+      transform: translateX(-0%);
+    }
+  }
+  .navbar-list {
+    @media only screen and (max-width: $bp-large) {
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+.scrolling {
+  color: $theme-darker-gray;
+  &:before {
+    backdrop-filter: blur(10px);
+    background-color: rgb(255, 255, 255, 50%);
+    transform: translateY(0%);
+  }
+  .navbar-list_title a {
+    color: $theme-darker-gray;
+  }
+  .icon-open {
+    &,
+    &::after,
+    &::before {
+      background-color: $theme-darker-gray;
     }
   }
 }
