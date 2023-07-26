@@ -60,6 +60,7 @@ h6,
 p,
 span {
   margin: 0;
+  letter-spacing: 2px;
 }
 
 ul,
@@ -83,10 +84,16 @@ input {
   display: grid;
   grid-template-rows: 100vh repeat(7, max-content);
   grid-template-columns:
-    [full-start] 7rem [col-start]
+    [full-start] 14rem [col-start]
     repeat(8, 1fr) [col-end]
-    7rem [full-end];
+    14rem [full-end];
 
+  @media only screen and (max-width: $bp-huge) {
+    grid-template-columns:
+      [full-start] 7rem [col-start]
+      repeat(8, 1fr) [col-end]
+      7rem [full-end];
+  }
   @media only screen and (max-width: $bp-medium) {
     grid-template-columns:
       [full-start] 4rem [col-start]

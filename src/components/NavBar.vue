@@ -8,8 +8,8 @@ const navbarList = reactive({
   list: [
     { id: "home", name: "館別介紹" },
     { id: "introduce", name: "館別特色" },
-    { id: 3, name: "活動資訊" },
-    { id: 4, name: "聯絡資訊" },
+    { id: "information", name: "聯絡資訊" },
+    { id: 4, name: "活動資訊" },
     { id: 5, name: "立即訂房" },
   ],
 });
@@ -79,7 +79,10 @@ onBeforeUnmount(() => {
               :key="l.id"
             >
               <div>
-                <span @click="scrollToSection(l.id, l.path)">
+                <span
+                  class="navbar-item"
+                  @click="scrollToSection(l.id, l.path)"
+                >
                   {{ l.name }}
                 </span>
               </div>
@@ -255,6 +258,30 @@ onBeforeUnmount(() => {
       text-align: center;
     }
   }
+  &-item {
+    position: relative;
+    transition: all 0.4s;
+    &::before {
+      opacity: 0;
+      content: "";
+      width: 100%;
+      height: 1px;
+      position: absolute;
+      left: 50%;
+      bottom: -5px;
+      transform-origin: bottom right;
+      background-color: $theme-white-color;
+      transition: 0.4s;
+    }
+    &:hover {
+      &::before {
+        opacity: 1;
+        transition: 0.4s;
+        transform-origin: bottom left;
+        transform: translateX(-50%) scaleX(1);
+      }
+    }
+  }
 }
 .icon-open {
   display: none;
@@ -324,6 +351,11 @@ onBeforeUnmount(() => {
       transform: translate(-50%, -50%);
     }
   }
+  .navbar-item {
+    &::before {
+      display: none;
+    }
+  }
 }
 
 .scrolling {
@@ -341,6 +373,14 @@ onBeforeUnmount(() => {
     &::after,
     &::before {
       background-color: $theme-darker-gray;
+    }
+  }
+  .navbar-item {
+    &::before {
+      background-color: $theme-darker-gray;
+      @media only screen and (max-width: $bp-large) {
+        display: none;
+      }
     }
   }
 }

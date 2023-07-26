@@ -54,7 +54,7 @@
   }
 }
 .middle {
-  transform: translateY(10%);
+  transform: translateY(-10%);
   opacity: 0;
   grid-column: col-start / col-end;
   display: grid;
@@ -129,10 +129,10 @@
   padding-top: $title-padding;
   grid-column: full-start / full-end;
   display: grid;
-  grid-template-columns: 7rem max-content 5rem 13% 1fr;
+  grid-template-columns: 14rem max-content 5rem 13% 1fr;
   grid-template-rows: repeat(4, max-content);
   grid-row-gap: 5rem;
-  @media only screen and (max-width: $bp-largest) {
+  @media only screen and (max-width: $bp-huge) {
     grid-template-columns: 7rem max-content 3rem 8% 1fr;
   }
   @media only screen and (max-width: $bp-medium) {
@@ -160,8 +160,6 @@
       grid-column: 2/4;
       grid-row: 1/2;
     }
-  }
-  &-top {
     h3 {
       font-size: $font-h3;
       font-weight: $font-weight-rough;
@@ -177,6 +175,7 @@
       text-transform: uppercase;
     }
   }
+
   &-middle {
     height: 100%;
     grid-column: 5/-1;
@@ -184,6 +183,7 @@
     grid-template-columns: max-content 1fr 20%;
     align-items: center;
     grid-column-gap: 4rem;
+
     @media only screen and (max-width: $bp-largest) {
       grid-template-columns: max-content 1fr 10%;
       grid-column-gap: 2rem;
@@ -281,6 +281,287 @@
         position: static;
         transform: translate(20%, 0%);
         width: 70%;
+      }
+    }
+  }
+}
+
+.room {
+  transform: translateY(-10%);
+  opacity: 0;
+  grid-column: col-start / col-end;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 2rem;
+  padding-top: $title-padding;
+  @media only screen and (max-width: $bp-largest) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    padding-top: $title-padding-small;
+  }
+  @media only screen and (max-width: $bp-medium) {
+    padding-top: 0;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+  &-card {
+    display: grid;
+    grid-template-rows: 1fr max-content max-content;
+    overflow: hidden;
+    color: $theme-darker-gray;
+  }
+  &-img {
+    width: 100%;
+    height: 15rem;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1, 1);
+      transition: all 1s ease-out;
+      &:hover {
+        transform: scale(1.2, 1.2);
+      }
+    }
+  }
+  &-text {
+    padding: 1.5rem 0 0;
+    h4 {
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 0.05rem solid $theme-darker-gray;
+    }
+  }
+  ul {
+    display: flex;
+    li {
+      padding-right: 0.3rem;
+    }
+  }
+}
+
+.single {
+  &-view {
+    padding: 8rem 0 $title-padding 0;
+    grid-column: 1/-1;
+    text-align: center;
+    @media only screen and (max-width: $bp-medium) {
+      padding: 1rem 0 $title-padding-small 0;
+    }
+    @media only screen and (max-width: $bp-small) {
+      padding: 2rem 0 $title-padding-small 0;
+    }
+  }
+  &-a {
+    font-size: $font-p;
+    position: relative;
+    transition: all 0.4s;
+    color: $theme-darker-gray;
+    &::before {
+      opacity: 0;
+      content: "";
+      width: 100%;
+      height: 1px;
+      position: absolute;
+      left: 50%;
+      bottom: -5px;
+      transform-origin: bottom right;
+      background-color: $theme-darker-gray;
+      transition: 0.4s;
+    }
+    &:hover {
+      color: lighten($theme-darker-gray, 20%);
+      &::before {
+        opacity: 1;
+        transition: 0.4s;
+        transform-origin: bottom left;
+        transform: translateX(-50%) scaleX(1);
+        background-color: lighten($theme-darker-gray, 20%);
+      }
+    }
+  }
+}
+
+.image {
+  transform: translateY(-10%);
+  opacity: 0;
+  grid-column: full-start / full-end;
+  width: 100%;
+  height: 35rem;
+  background-image: url(../img/background01.jpg);
+  background-size: cover;
+  background-position: 60%;
+  background-repeat: no-repeat;
+  margin-bottom: $margin-web;
+  @media only screen and (max-width: $bp-largest) {
+    height: 30rem;
+    margin-bottom: $title-padding;
+  }
+  @media only screen and (max-width: $bp-medium) {
+    height: 25rem;
+    margin-bottom: $title-padding-small;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    height: 20rem;
+  }
+}
+
+.activity {
+  transform: translateY(-10%);
+  grid-column: full-start / full-end;
+  display: grid;
+  grid-template-columns: 14rem max-content 1fr 15% 14rem;
+  grid-template-rows: repeat(2, max-content);
+  grid-row-gap: 5rem;
+  @media only screen and (max-width: $bp-huge) {
+    grid-template-columns: 7rem max-content 1fr 15% 7rem;
+  }
+  @media only screen and (max-width: $bp-medium) {
+    grid-row-gap: 3rem;
+    grid-template-rows: 1fr;
+  }
+
+  &::before {
+    content: "";
+    grid-column: 4/-1;
+    grid-row: 2/3;
+    width: 100%;
+    height: 30%;
+    background-color: $background-green-dark;
+    @media only screen and (max-width: $bp-largest) {
+      width: 110%;
+    }
+    @media only screen and (max-width: $bp-medium) {
+      background-color: transparent;
+    }
+  }
+  &-top {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    @media only screen and (max-width: $bp-medium) {
+      padding-top: 3rem;
+      grid-column: 2/4;
+      grid-row: 1/2;
+    }
+    h3 {
+      font-size: $font-h3;
+      font-weight: $font-weight-rough;
+      line-height: $line-normal;
+      margin-bottom: 0.5rem;
+      @media only screen and (max-width: $bp-medium) {
+        font-size: $font-small-h3;
+        margin-bottom: 0.3rem;
+      }
+    }
+    p {
+      font-weight: $font-weight-normal;
+      font-size: $font-p-small;
+      text-transform: uppercase;
+    }
+  }
+
+  &-middle {
+    grid-column: 2/5;
+    grid-row: 2/3;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    grid-template-rows: repeat(2, max-content);
+    grid-row-gap: 10rem;
+    margin-top: 5rem;
+    grid-column-gap: 15%;
+    @media only screen and (max-width: $bp-largest) {
+      grid-row-gap: 5rem;
+      margin-top: 2.5rem;
+    }
+    @media only screen and (max-width: $bp-medium) {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(4, max-content);
+      grid-row-gap: 3rem;
+      margin-top: 0;
+    }
+    &-text {
+      margin-left: 5rem;
+      @media only screen and (max-width: $bp-medium) {
+        text-align: center;
+        margin-left: 0;
+      }
+      h4 {
+        font-size: 1.75rem;
+        line-height: $line-high;
+      }
+    }
+    &-left {
+      grid-column: 1/2;
+      overflow: hidden;
+      @media only screen and (max-width: $bp-medium) {
+        grid-column: auto;
+      }
+    }
+    &-img {
+      width: 100%;
+      height: 35rem;
+      background-image: url(/src/assets/img/activity01.jpg);
+      background-size: cover;
+      background-position: -3rem;
+      @media only screen and (max-width: $bp-largest) {
+        height: 30rem;
+        background-position: left;
+      }
+      @media only screen and (max-width: $bp-medium) {
+        height: 25rem;
+      }
+    }
+    &-right {
+      grid-column: 2/-1;
+      @media only screen and (max-width: $bp-medium) {
+        grid-column: auto;
+      }
+      p {
+        font-size: $font-p;
+        line-height: $line-high;
+        @media only screen and (max-width: $bp-large) {
+        }
+        @media only screen and (max-width: $bp-medium) {
+          grid-column: auto;
+        }
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        th {
+          padding: 2.5rem 0;
+          border-bottom: solid 0.1rem $theme-darker-gray;
+          width: 20%;
+          @media only screen and (max-width: $bp-largest) {
+            width: 40%;
+          }
+          @media only screen and (max-width: $bp-medium) {
+            width: 30%;
+          }
+        }
+        td {
+          width: 80%;
+          border-bottom: solid 0.1rem $theme-gray;
+          @media only screen and (max-width: $bp-largest) {
+            width: 60%;
+          }
+          @media only screen and (max-width: $bp-medium) {
+            width: 70%;
+          }
+          a {
+            color: $theme-dark-gray;
+            transition: all 0.2s;
+            &:hover {
+              color: $theme-darker-gray;
+            }
+          }
+        }
       }
     }
   }
