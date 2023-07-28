@@ -100,4 +100,10 @@ input {
       repeat(8, 1fr) [col-end]
       4rem [full-end];
   }
+  @media only screen and (max-width: $bp-small) {
+    grid-template-columns:
+      [full-start] 2rem [col-start]
+      repeat(8, 1fr) [col-end]
+      2rem [full-end];
+  }
 }

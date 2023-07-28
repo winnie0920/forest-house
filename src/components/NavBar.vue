@@ -27,6 +27,12 @@ const scrollToSection = (scroll, path) => {
   }
   checkNavBox.value = false;
 };
+const scrollTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+};
 
 watch(checkNavBox, (n) => {
   if (n) {
@@ -52,7 +58,7 @@ onBeforeUnmount(() => {
       :class="{ scrolling: navbarColor, checkNav: checkNavBox }"
     >
       <div class="navbar_container">
-        <div class="navbar-logo">
+        <div class="navbar-logo" @click="scrollTop()">
           <p class="navbar-logo_ch">森林小屋</p>
           <p class="navbar-logo_en">Forest cabin</p>
         </div>
@@ -140,6 +146,7 @@ onBeforeUnmount(() => {
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
     @media only screen and (max-width: $bp-large) {
       padding: 0.6rem 1.2rem;
     }
@@ -362,6 +369,7 @@ onBeforeUnmount(() => {
   color: $theme-darker-gray;
   &:before {
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     background-color: rgb(255, 255, 255, 50%);
     transform: translateY(0%);
   }

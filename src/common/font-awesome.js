@@ -2,7 +2,7 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import {} from "@fortawesome/free-regular-svg-icons";
-// import {} from '@fortawesome/free-brands-svg-icons'
+import { faLine, faFacebookF } from "@fortawesome/free-brands-svg-icons";
 
 /* add icons to the library */
-library.add(faHouse);
+library.add(faHouse, faLine, faFacebookF);

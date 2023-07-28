@@ -12022,6 +12022,14 @@ textarea.form-control-lg {
     transform: translateX(0px);
   }
 }
+@keyframes wordsLoop {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-70%);
+  }
+}
 :root {
   font-family: Hind Vadodara, "Noto Serif TC", Inter, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -12126,6 +12134,11 @@ input:-webkit-autofill {
     grid-template-columns: [full-start] 4rem [col-start] repeat(8, 1fr) [col-end] 4rem [full-end];
   }
 }
+@media only screen and (max-width: 37.5em) {
+  .g-container {
+    grid-template-columns: [full-start] 2rem [col-start] repeat(8, 1fr) [col-end] 2rem [full-end];
+  }
+}
 
 .webOpacity {
   transform: translateY(0%) !important;
@@ -12152,7 +12165,7 @@ input:-webkit-autofill {
   position: relative;
   top: 50%;
   left: 10%;
-  width: 75%;
+  width: 100%;
 }
 .header-title {
   color: #ffffff;
@@ -12189,7 +12202,7 @@ input:-webkit-autofill {
 }
 
 .middle {
-  transform: translateY(-10%);
+  transform: translateY(-5%);
   opacity: 0;
   grid-column: col-start/col-end;
   display: grid;
@@ -12231,6 +12244,11 @@ input:-webkit-autofill {
 .middle-container p {
   font-size: 1.2rem;
   line-height: 1.75;
+}
+@media only screen and (max-width: 56.25em) {
+  .middle-container br {
+    display: none;
+  }
 }
 @media only screen and (max-width: 68.75em) {
   .middle-container {
@@ -12278,6 +12296,11 @@ input:-webkit-autofill {
     grid-template-columns: 4rem 1fr 1fr 4rem;
     grid-row-gap: 3rem;
     padding-top: 5rem;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .feature {
+    grid-template-columns: 2rem 1fr 1fr 2rem;
   }
 }
 .feature::before {
@@ -12444,7 +12467,7 @@ input:-webkit-autofill {
 }
 
 .room {
-  transform: translateY(-10%);
+  transform: translateY(-2%);
   opacity: 0;
   grid-column: col-start/col-end;
   display: grid;
@@ -12500,6 +12523,14 @@ input:-webkit-autofill {
   padding-bottom: 0.5rem;
   margin-bottom: 0.5rem;
   border-bottom: 0.05rem solid #313131;
+}
+.room-text p {
+  font-size: 1.2rem;
+}
+@media only screen and (max-width: 31.25em) {
+  .room-text p {
+    margin-bottom: 0.25rem;
+  }
 }
 .room ul {
   display: flex;
@@ -12562,18 +12593,15 @@ input:-webkit-autofill {
   background-size: cover;
   background-position: 60%;
   background-repeat: no-repeat;
-  margin-bottom: 15rem;
 }
 @media only screen and (max-width: 75em) {
   .image {
     height: 30rem;
-    margin-bottom: 10rem;
   }
 }
 @media only screen and (max-width: 56.25em) {
   .image {
     height: 25rem;
-    margin-bottom: 5rem;
   }
 }
 @media only screen and (max-width: 37.5em) {
@@ -12583,22 +12611,30 @@ input:-webkit-autofill {
 }
 
 .activity {
-  transform: translateY(-10%);
+  opacity: 0;
+  transform: translateY(-5%);
   grid-column: full-start/full-end;
   display: grid;
   grid-template-columns: 14rem max-content 1fr 15% 14rem;
   grid-template-rows: repeat(2, max-content);
   grid-row-gap: 5rem;
+  padding-top: 10rem;
 }
 @media only screen and (max-width: 100em) {
   .activity {
-    grid-template-columns: 7rem max-content 1fr 15% 7rem;
+    grid-template-columns: 4rem max-content 1fr 15% 4rem;
   }
 }
 @media only screen and (max-width: 56.25em) {
   .activity {
     grid-row-gap: 3rem;
     grid-template-rows: 1fr;
+    padding-top: 5rem;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .activity {
+    grid-template-columns: 2rem max-content 1fr 15% 2rem;
   }
 }
 .activity::before {
@@ -12625,7 +12661,6 @@ input:-webkit-autofill {
 }
 @media only screen and (max-width: 56.25em) {
   .activity-top {
-    padding-top: 3rem;
     grid-column: 2/4;
     grid-row: 1/2;
   }
@@ -12734,6 +12769,7 @@ input:-webkit-autofill {
 }
 .activity-middle-right table th {
   padding: 2.5rem 0;
+  font-size: 1.2rem;
   border-bottom: solid 0.1rem #313131;
   width: 20%;
 }
@@ -12745,10 +12781,12 @@ input:-webkit-autofill {
 @media only screen and (max-width: 56.25em) {
   .activity-middle-right table th {
     width: 30%;
+    padding: 1.5rem 0;
   }
 }
 .activity-middle-right table td {
   width: 80%;
+  font-size: 1.2rem;
   border-bottom: solid 0.1rem #afb5b6;
 }
 @media only screen and (max-width: 75em) {

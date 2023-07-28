@@ -8,6 +8,7 @@
         <component :is="slotProps.Component"></component>
       </transition>
     </router-view>
+    <Floor />
   </div>
 </template>
 
