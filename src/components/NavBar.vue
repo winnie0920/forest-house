@@ -1,4 +1,5 @@
 <script setup>
+import router from "../router";
 const navbarColor = ref(false);
 const checkNavBox = ref(false);
 const SlideScroll = () => {
@@ -6,18 +7,18 @@ const SlideScroll = () => {
 };
 const navbarList = reactive({
   list: [
-    { id: "home", name: "館別介紹" },
-    { id: "introduce", name: "館別特色" },
-    { id: "information", name: "聯絡資訊" },
-    { id: 4, name: "活動資訊" },
-    { id: 5, name: "立即訂房" },
+    { id: "home", path: "/", name: "館別介紹" },
+    { id: "introduce", path: "/", name: "館別特色" },
+    { id: "information", path: "/", name: "聯絡資訊" },
+    { id: "information", path: "information", name: "活動資訊" },
+    { id: 5, name: "立即訂房", path: "booking" },
   ],
 });
-
+const currentRoute = useRoute();
 const scrollToSection = (scroll, path) => {
-  if (path) {
-    router.push({ name: path });
-  } else {
+  if (path !== currentRoute.path) {
+    router.push({ path });
+  } else if (currentRoute.path === "/") {
     const element = document.getElementById(scroll);
     if (element) {
       //這裡設置自定義滾動行為
@@ -45,6 +46,7 @@ watch(checkNavBox, (n) => {
 onMounted(() => {
   window.addEventListener("scroll", SlideScroll);
   SlideScroll();
+  console.log(currentRoute.path === "/");
 });
 onBeforeUnmount(() => {
   window.removeEventListener("scroll", SlideScroll);
@@ -111,6 +113,11 @@ onBeforeUnmount(() => {
     z-index: 10;
     font-size: $font-p;
     color: $theme-white-color;
+    background: -webkit-linear-gradient(
+      top,
+      rgba(0, 0, 0, 0.65) 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
     @media only screen and (max-width: $bp-medium) {
       font-size: $font-p-small;
     }
@@ -250,6 +257,9 @@ onBeforeUnmount(() => {
       z-index: 100;
       background-color: transparent;
       text-align: center;
+      @media only screen and (max-width: $bp-smallest) {
+        top: -0.1rem;
+      }
     }
   }
   &-close {

@@ -7,10 +7,14 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    Activity: typeof import('./views/Activity.vue')['default']
+    BookIng: typeof import('./views/bookIng.vue')['default']
+    BookRoom: typeof import('./views/bookRoom.vue')['default']
     Floor: typeof import('./components/Floor.vue')['default']
     Home: typeof import('./views/Home.vue')['default']
-    Introduce: typeof import('./views/Introduce.vue')['default']
+    Information: typeof import('./views/Information.vue')['default']
     NavBar: typeof import('./components/NavBar.vue')['default']
+    NewPage: typeof import('./components/NewPage.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

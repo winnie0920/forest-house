@@ -1,0 +1,89 @@
+.new {
+  &-header {
+    position: relative;
+    grid-column: full-start / full-end;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    margin-bottom: $margin-web;
+    text-align: center;
+  }
+  &-describe {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    width: 100%;
+  }
+  &-title {
+    line-height: $line-high;
+    font-weight: $font-weight-normal;
+    color: $theme-white-color;
+    font-size: $font-small-h3;
+  }
+  &-container {
+    grid-column: col-start / col-end;
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+    padding-top: $title-padding-small;
+    @media only screen and (max-width: $bp-largest) {
+      grid-template-columns: repeat(2, 1fr);
+      width: 100%;
+      grid-gap: 1rem;
+    }
+    @media only screen and (max-width: $bp-small) {
+      grid-template-columns: 1fr;
+      grid-gap: 0.5rem;
+    }
+    h3 {
+      grid-column: 1/-1;
+      font-size: $font-h3;
+      font-weight: $font-weight-normal;
+      line-height: $line-normal;
+      margin-bottom: 0.5rem;
+      @media only screen and (max-width: $bp-medium) {
+        font-size: $font-small-h3;
+        margin-bottom: 0.3rem;
+      }
+    }
+  }
+  &-card {
+    text-align: center;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1, 1);
+      transition: all 1s ease-out;
+      &:hover {
+        transform: scale(1.2, 1.2);
+      }
+    }
+    p {
+      margin-top: 1rem;
+      font-size: $font-p;
+      color: $theme-darker-gray;
+      @media only screen and (max-width: $bp-small) {
+        margin-top: 0.5rem;
+      }
+    }
+  }
+  &-img {
+    height: 20rem;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1, 1);
+      transition: all 1s ease-out;
+      &:hover {
+        transform: scale(1.2, 1.2);
+      }
+    }
+  }
+}

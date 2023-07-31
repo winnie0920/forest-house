@@ -138,7 +138,8 @@ const useScroll = () => {
   const scrollTop = window.scrollY;
 
   function ElementScroll(ref, show, number) {
-    if (scrollTop >= ref.value.offsetTop - number) {
+    const refValue = unref(ref);
+    if (refValue && scrollTop >= refValue.offsetTop - number) {
       //offsetTop是指相對於父元素的距離
       showWeb[show] = true;
     }
