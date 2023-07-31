@@ -144,7 +144,7 @@ const useScroll = () => {
       showWeb[show] = true;
     }
   }
-  ElementScroll(middleRef, "middle", 100);
+  ElementScroll(middleRef, "middle", 300);
   ElementScroll(featureRef, "feature", 200);
   ElementScroll(roomRef, "room", 150);
   ElementScroll(imageRef, "image", 200);
