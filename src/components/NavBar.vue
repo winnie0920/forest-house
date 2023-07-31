@@ -335,6 +335,8 @@ onBeforeUnmount(() => {
   &::after,
   &::before {
     content: "";
+    top: 50%;
+    left: 50%;
     width: 3rem;
     height: 2px;
     background-color: $theme-darker-gray;

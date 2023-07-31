@@ -20,7 +20,7 @@ const homeContent = reactive({
         { text: "也是一種探索" },
       ],
       p: [
-        "去旅行每個人都有自己的定義，不願被困在籠中，<br/>迷戀在路上的感覺，遠方有著讓人難以抵擋的誘惑，所以，我們旅行。<br/>不去旅行的藉口更是不同，沒有多餘的精力和時間，<br/>旅行的費用不足林林總總。<br/>旅行也是不斷學習的過程，讓自己活得更自由",
+        "去旅行每個人都有自己的定義，不願被困在籠中，<br/>迷戀在路上的感覺，遠方有著讓人難以抵擋的誘惑，所以，我們旅行。<br/>不去旅行的藉口更是不同，沒有多餘的精力和時間，<br/>旅行的費用不足林林總總。<br/>旅行也是不斷學習的過程，讓自己活得更自由。",
       ],
     },
   ],
@@ -146,8 +146,8 @@ const useScroll = () => {
   }
   ElementScroll(middleRef, "middle", 300);
   ElementScroll(featureRef, "feature", 200);
-  ElementScroll(roomRef, "room", 150);
-  ElementScroll(imageRef, "image", 200);
+  ElementScroll(roomRef, "room", 300);
+  ElementScroll(imageRef, "image", 300);
   ElementScroll(activityRef, "activity", 300);
 };
 
