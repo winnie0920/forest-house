@@ -1,6 +1,6 @@
 <script setup>
 const data = reactive({
-  image: "src/assets/img/img05.jpg",
+  image: "5",
   title: "立即訂房",
   position: "center",
 });

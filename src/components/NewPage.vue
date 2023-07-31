@@ -3,14 +3,20 @@ const props = defineProps({ data: { type: Object, default: null } });
 const PositionStyle = computed(() => {
   return props.data.position || "bottom";
 });
+
+const getImageUrl = (id) => {
+  return new URL(`../assets/img/img0${id}.jpg`, import.meta.url).href;
+};
 </script>
 <template>
   <div class="g-container">
     <section
       class="new-header"
       :style="{
-        backgroundImage: 'url(' + props.data.image + ')',
-        backgroundPosition: PositionStyle,
+        backgroundImage: `url(${getImageUrl(props.data.image)})`,
+        backgroundPosition: props.data.position
+          ? props.data.position
+          : 'bottom',
       }"
     >
       <div class="new-describe">

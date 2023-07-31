@@ -1,6 +1,6 @@
 <script setup>
 const data = reactive({
-  image: "src/assets/img/img04.jpg",
+  image: "4",
   title: "活動資訊",
 });
 const informationData = reactive([
@@ -13,7 +13,6 @@ const getImageUrl = (id) => {
   return new URL(`../assets/img/information0${id}.jpg`, import.meta.url).href;
 };
 </script>
-
 <template>
   <NewPage :data="data">
     <template #main>
