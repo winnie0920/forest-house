@@ -19,7 +19,9 @@ const getImageUrl = (id) => {
       <div class="new-container">
         <div class="new-card" :key="i.id" v-for="i in informationData">
           <a href="#">
-            <img :src="getImageUrl(i.id)" />
+            <div class="new-img">
+              <img :src="getImageUrl(i.id)" />
+            </div>
             <p>{{ i.p }}</p>
           </a>
         </div>
@@ -30,4 +32,10 @@ const getImageUrl = (id) => {
 
 <style lang="scss" scoped>
 @import "src/assets/css/_variable.scss";
+.new-img {
+  height: 10rem;
+  @media only screen and (max-width: $bp-largest) {
+    height: 15rem;
+  }
+}
 </style>
